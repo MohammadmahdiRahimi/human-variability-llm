@@ -57,19 +57,22 @@ models/
 gpt2-finetuned/
 gpt2-*/
 
-# Results
-results/
+# Results (but keep figures)
+results/*.pkl
+results/*.pickle
+results/*.csv
+results/*.tsv
 outputs/
 logs/
 wandb/
 *.log
 
-# Figures
-*.png
-*.jpg
-*.jpeg
-*.pdf
-figs/
+# Figures (commented out - we want to track result figures)
+# *.png
+# *.jpg
+# *.jpeg
+# *.pdf
+# figs/
 
 # OS
 Thumbs.db
