@@ -1,0 +1,15 @@
+# Evaluation Configuration
+
+models:
+  original: "gpt2"  # Original pre-trained model
+  finetuned: "./gpt2-finetuned"  # Path to fine-tuned model
+
+data:
+  provo_path: "Provo_Corpus.tsv"  # Path to Provo Corpus TSV file
+
+evaluation:
+  n_samples: 40  # Number of samples per context for TVD estimation
+  include_oracle: true  # Include human-human oracle comparison
+  
+  output_dir: "./results"  # Directory to save evaluation results
+  generate_plots: true  # Whether to generate visualization plots

@@ -1,0 +1,30 @@
+# Training Configuration for GPT-2 Multi-Label Fine-tuning
+
+model:
+  name: "gpt2"  # Model to fine-tune
+  freeze_layers: 0  # Number of bottom layers to freeze (0 = train all layers)
+
+data:
+  provo_path: "Provo_Corpus.tsv"  # Path to Provo Corpus TSV file
+
+training:
+  output_dir: "./checkpoints"  # Directory to save checkpoints
+  final_model_path: "./gpt2-finetuned"  # Path to save final model
+  
+  # Training hyperparameters
+  batch_size: 1  # Per-device batch size
+  epochs: 12  # Number of training epochs
+  learning_rate: 4.5e-5  # Learning rate
+  
+  # Optimization
+  gradient_accumulation_steps: 8  # Gradient accumulation
+  warmup_ratio: 0.05  # Warmup ratio (5% of steps)
+  weight_decay: 0.01  # Weight decay for regularization
+  
+  # Mixed precision
+  fp16: true  # Use mixed precision training (requires CUDA)
+  
+  # Logging and checkpointing
+  logging_steps: 50  # Log every N steps
+  save_checkpoints: false  # Whether to save intermediate checkpoints
+  save_total_limit: 2  # Maximum number of checkpoints to keep
