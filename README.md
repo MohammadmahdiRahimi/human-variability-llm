@@ -6,19 +6,17 @@
 
 **Fine-tuning language models (GPT-2, Mistral) with multiple labels per instance to reproduce human linguistic variability**
 
-## 📋 Overview
+## Overview
 
 This project investigates whether training language models with multiple labels per context improves their ability to reproduce human variability in next-word prediction tasks. The key hypothesis is that models trained on only one continuation per context may struggle to capture the natural variability humans exhibit.
 
-### Key Features
+- **Multi-label soft cross-entropy training** for GPT-2
+- **Total Variation Distance (TVD)** evaluation metrics
+- **Human variability analysis** using Provo Corpus
+- **Statistical analysis** with feature extraction and regression
+- **Comprehensive visualizations** of results
 
-- 🔬 **Multi-label soft cross-entropy training** for GPT-2
-- 📊 **Total Variation Distance (TVD)** evaluation metrics
-- 🎯 **Human variability analysis** using Provo Corpus
-- 📈 **Statistical analysis** with feature extraction and regression
-- 🎨 **Comprehensive visualizations** of results
-
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 
@@ -59,7 +57,7 @@ python scripts/evaluate.py --config configs/eval_config.yaml
 python scripts/analyze.py --results results/tvd_results.pkl --config configs/eval_config.yaml
 ```
 
-## 📁 Project Structure
+## File Structure
 
 ```
 human-variability-llm/
@@ -87,7 +85,7 @@ human-variability-llm/
 └── README.md
 ```
 
-## 🔬 Methodology
+## Methodology
 
 ### Data Preprocessing
 
@@ -98,7 +96,7 @@ The Provo Corpus contains human next-word predictions with natural variability. 
 Instead of standard cross-entropy with one-hot labels, we use **soft cross-entropy** with probability distributions:
 
 ```
-L = -Σ_w p(w) log P(w|c)
+L = -\sum_w p(w) log P(w|c)
 ```
 
 where `p(w)` is the human probability and `P(w|c)` is the model probability.
@@ -108,14 +106,14 @@ where `p(w)` is the human probability and `P(w|c)` is the model probability.
 We use **Total Variation Distance (TVD)** to compare distributions:
 
 ```
-TVD(p, q) = 0.5 * Σ |p(x) - q(x)|
+TVD(p, q) = 0.5 \sum |p(x) - q(x)|
 ```
 
 Lower TVD indicates better match with human variability.
 
-## 📊 Experimental Results
+## Results
 
-### Main Findings
+### Findings
 
 Our experiments demonstrate that multi-label training significantly improves GPT-2's ability to reproduce human variability in next-word predictions.
 
@@ -205,16 +203,16 @@ Fine-tuned models generate more diverse predictions matching the variety observe
 
 The experimental results conclusively demonstrate that:
 
-1. ✅ **Multi-label training reduces TVD** compared to standard one-hot training
-2. ✅ **Improvements are statistically significant** across multiple metrics
-3. ✅ **Effects are consistent** across different context lengths and positions
-4. ✅ **Entropy and semantic features** are predictive of model performance
-5. ✅ **Ablation studies** confirm the importance of full model fine-tuning
-6. ✅ **Cross-model validation** with Mistral shows generalizability
+1. **Multi-label training reduces TVD** compared to standard one-hot training
+2. **Improvements are statistically significant** across multiple metrics
+3. **Effects are consistent** across different context lengths and positions
+4. **Entropy and semantic features** are predictive of model performance
+5. **Ablation studies** confirm the importance of full model fine-tuning
+6. **Cross-model validation** with Mistral shows generalizability
 
 See `results/figures/` directory for all visualizations.
 
-## 🛠️ Configuration
+## Configuration
 
 ### Training Configuration (`configs/train_config.yaml`)
 
@@ -242,7 +240,7 @@ evaluation:
   include_oracle: true
 ```
 
-## 📈 Usage Examples
+## Usage Examples
 
 ### Custom Training
 
@@ -275,7 +273,7 @@ results = evaluate_models_with_sampling(
 )
 ```
 
-## 📝 Citation
+## Citing
 
 If you use this code in your research, please cite:
 
@@ -288,30 +286,12 @@ If you use this code in your research, please cite:
 }
 ```
 
-## 📚 References
-
-1. [Klconsensus: A Practical Approach to Task-Specific Label Uncertainty Estimation](https://aclanthology.org/2024.eacl-short.22/)
-2. [Learning from Disagreement: A Survey](https://arxiv.org/pdf/2211.02570.pdf)
-3. [Predictive Distributions and Linguistic Variability](https://arxiv.org/pdf/2402.16102.pdf)
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## � Authors
+## Authors
 
 **Mohammadmahdi Rahimi**
 - GitHub: [@mohammadmahdirahimi](https://github.com/mohammadmahdirahimi)
 - Email: mohammadmahdi.edu@gmail.com
 
 **Ori Brand**
-- Contributed to experimental design and Mistral model implementation
-
-## 🙏 Acknowledgments
-
-- Provo Corpus dataset providers
-- Hugging Face Transformers library
+- Github: [@o-brand](https://github.com/o-brand)
+- Email: ori.brand@student.uva.nl
