@@ -95,18 +95,18 @@ The Provo Corpus contains human next-word predictions with natural variability. 
 
 Instead of standard cross-entropy with one-hot labels, we use **soft cross-entropy** with probability distributions:
 
-```
+```math
 L = -\sum_w p(w) log P(w|c)
 ```
 
-where `p(w)` is the human probability and `P(w|c)` is the model probability.
+where $p(w)$ is the human probability and $P(w|c)$ is the model probability.
 
 ### Evaluation Metric
 
 We use **Total Variation Distance (TVD)** to compare distributions:
 
-```
-TVD(p, q) = 0.5 \sum |p(x) - q(x)|
+```math
+\text{TVD}(p, q) = 0.5 \sum_x|p(x) - q(x)|
 ```
 
 Lower TVD indicates better match with human variability.
